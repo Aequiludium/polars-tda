@@ -1,0 +1,22 @@
+name: Feature request
+description: Describe a data-analysis workflow or missing capability.
+body:
+  - type: textarea
+    id: workflow
+    attributes:
+      label: Analysis workflow
+      description: What are you trying to accomplish, and what makes it difficult today?
+    validations:
+      required: true
+  - type: textarea
+    id: example
+    attributes:
+      label: Example input and desired output
+      description: Use synthetic data and show the desired result shape or expression. A proposed implementation is optional.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives and constraints
+      description: Describe existing workarounds and relevant accuracy, performance or compatibility needs.

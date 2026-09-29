@@ -1,0 +1,66 @@
+--- a/src/algebra/column/mod.rs
++++ b/src/algebra/column/mod.rs
+@@ -1,7 +1,7 @@
+ //! Ordered sparse coefficient columns, independent of filtration and execution.
+ use super::PrimeField;
+ use crate::Result;
+-use std::collections::BTreeMap;
++use std::collections::{BTreeMap, btree_map::Entry};
+ 
+ #[derive(Clone, Debug)]
+ pub(crate) struct Column<K>(BTreeMap<K, u32>);
+@@ -28,11 +28,21 @@
+         self.0.get(key).copied().unwrap_or(0)
+     }
+     pub(crate) fn add_term(&mut self, key: K, coefficient: u32, field: PrimeField) {
+-        let value = field.add(self.get(&key), coefficient);
+-        if value == 0 {
+-            self.0.remove(&key);
+-        } else {
+-            self.0.insert(key, value);
++        match self.0.entry(key) {
++            Entry::Occupied(mut entry) => {
++                let value = field.add(*entry.get(), coefficient);
++                if value == 0 {
++                    entry.remove();
++                } else {
++                    *entry.get_mut() = value;
++                }
++            }
++            Entry::Vacant(entry) => {
++                let value = field.reduce(coefficient);
++                if value != 0 {
++                    entry.insert(value);
++                }
++            }
+         }
+     }
+     pub(crate) fn add_scaled(
+@@ -62,3 +72,27 @@
+         Ok(())
+     }
+ }
++
++#[cfg(test)]
++mod tests {
++    use super::*;
++
++    #[test]
++    fn term_updates_normalize_residues_and_remove_cancellations() {
++        for prime in [2, 3, 5, 4_294_967_291] {
++            let field = PrimeField::new(prime).unwrap();
++            let mut column = Column::new();
++            column.add_term(4, prime - 1, field);
++            column.add_term(4, 1, field);
++            assert!(column.is_empty());
++            column.add_term(9, prime, field);
++            assert!(column.is_empty());
++            column.add_term(9, u32::MAX, field);
++            assert_eq!(column.get(&9), u32::MAX % prime);
++            column.add_term(9, u32::MAX, field);
++            let expected = ((2 * u64::from(u32::MAX)) % u64::from(prime)) as u32;
++            assert_eq!(column.get(&9), expected);
++            assert_eq!(column.is_empty(), expected == 0);
++        }
++    }
++}

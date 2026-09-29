@@ -1,0 +1,34 @@
+[package]
+name = "polars-tda"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.95"
+description = "Native topological data analysis expressions for Polars"
+license = "MIT"
+repository = "https://github.com/Aequiludium/polars-tda"
+readme = "README.md"
+publish = false
+
+[lib]
+name = "polars_tda"
+crate-type = ["cdylib"]
+
+[dependencies]
+cocycle = { git = "https://github.com/Aequiludium/cocycle-rs", rev = "d404282745a4238636ccb83d521eeac952ff7a30" }
+polars = { version = "=0.55.1", default-features = false }
+pyo3 = { version = "=0.29.0", features = ["extension-module", "abi3-py310"] }
+pyo3-polars = { version = "=0.28.0", features = ["derive"] }
+
+# Enable only core Struct support; expressions do not use Rust IO/lazy APIs.
+polars-core = { version = "=0.55.2", default-features = false, features = ["dtype-struct"] }
+serde = { version = "1", features = ["derive"] }
+
+[lints.clippy]
+dbg_macro = "deny"
+todo = "deny"
+
+[profile.dev]
+debug = 0
+
+[profile.release]
+strip = "debuginfo"

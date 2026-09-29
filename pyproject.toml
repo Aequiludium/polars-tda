@@ -1,0 +1,44 @@
+[build-system]
+requires = ["maturin>=1.9,<2"]
+build-backend = "maturin"
+
+[project]
+name = "polars-tda"
+description = "Native topological data analysis expressions for Polars"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "MIT"
+license-files = ["LICENSE", "THIRD_PARTY_NOTICES.md"]
+dynamic = ["version"]
+dependencies = ["polars==1.44.2"]
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Rust",
+  "Topic :: Scientific/Engineering :: Mathematics",
+]
+
+[project.urls]
+Repository = "https://github.com/Aequiludium/polars-tda"
+Documentation = "https://github.com/Aequiludium/polars-tda/blob/main/docs/README.md"
+Issues = "https://github.com/Aequiludium/polars-tda/issues"
+
+[dependency-groups]
+dev = ["maturin>=1.9,<2", "pytest>=8,<10", "ruff>=0.12,<1"]
+
+[tool.maturin]
+python-source = "python"
+module-name = "polars_tda._internal"
+bindings = "pyo3"
+include = [{ path = "Cargo.lock", format = "sdist" }]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-ra --import-mode=importlib"
+
+[tool.ruff]
+target-version = "py310"
+line-length = 88
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]

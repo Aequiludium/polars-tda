@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  plugin:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: '3.10'
+      - uses: dtolnay/rust-toolchain@6bed0761d98439e5a578e2877258200ad565ba87
+        with:
+          toolchain: '1.95.0'
+          components: rustfmt, clippy
+      - run: python -m pip install uv
+      - run: uv sync --locked --no-install-project
+      - run: cargo fmt --all -- --check
+      - run: uv run --no-sync ruff check .
+      - run: uv run --no-sync ruff format --check .
+      - run: cargo clippy --locked --lib --example profile_sparse -- -D warnings
+      - run: uv run --no-sync maturin build --release --locked --out dist
+      - run: uv pip install --no-deps dist/*.whl
+      - run: uv run --no-sync pytest

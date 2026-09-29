@@ -1,0 +1,30 @@
+name: Bug report
+description: Report incorrect results, failures or unexpected expression behavior.
+body:
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Expected and actual behavior
+      description: Explain what you expected and what happened, including error messages.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Minimal reproduction
+      description: Include imports and a small synthetic DataFrame. Do not include private data or credentials.
+      render: python
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Include polars-tda version or commit, Polars and Python versions, OS, and installation method. For source builds, include Rust version and build mode.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: For performance issues, include point count, coordinate count, group sizes, computation method and measurements.
