@@ -103,4 +103,4 @@ small clouds it is slower than exact. See [measurements](benchmark-notes.md).
 
 Preset/schema changes must be documented with a package version; they must not
 vary silently by cloud size or machine. The current implementation uses the
-pinned kernel revision and the documented fixed settings for every cloud.
+pinned kernel dependency and the documented fixed settings for every cloud.

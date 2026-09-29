@@ -3,6 +3,8 @@
 Local release-wheel measurements on 2026-09-28. CPU: AMD EPYC 7H12; Linux x86_64,
 Python 3.13.3, Polars 1.44.2, polars-tda 0.1.0; cocycle revision
 `d404282745a4238636ccb83d521eeac952ff7a30`.
+These are historical measurements of the initial source preview, not fresh
+performance measurements of the development branch's crates.io cocycle 0.1.1.
 
 Uniform 3D points in [0,1), seed 42, H0/H1 over F2, no scale cutoff. Sparse uses
 epsilon 0.5 and unchecked metric policy. Each row reports medians of three fresh

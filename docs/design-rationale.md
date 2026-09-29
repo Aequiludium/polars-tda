@@ -104,6 +104,8 @@ missing from the kernel's public API, evaluate that specific kernel change
 separately; independence does not guarantee that every future feature needs no
 kernel work.
 
-The Git-pinned dependency is compiled by Cargo. A kernel update is explicit and
+The development branch uses the exact crates.io dependency `cocycle = "=0.1.1"`;
+the initial source preview used a Git pin. Cargo compiles the dependency, with
+its source and checksum recorded in the lockfile. A kernel update is explicit and
 tested; it does not automatically enlarge the Python API. See
 [project boundaries](../README.md#kernel-and-project-boundaries).

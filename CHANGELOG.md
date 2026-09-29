@@ -6,7 +6,14 @@ under the next development section. The project currently has a pre-alpha API.
 
 ## Unreleased
 
-No changes recorded yet.
+- Replace the development branch's Git-pinned kernel with the exact published
+  crates.io dependency `cocycle = "=0.1.1"` and its registry checksum.
+- Adapt diagram serialization to the kernel's logical interval iterator by using
+  `PersistenceDiagram::len()` for the output length. Python expressions, Arrow
+  schemas and computation presets remain unchanged; no intermediate interval
+  collection is introduced.
+- Keep the published polars-tda `v0.1.0` tag and its historical Git dependency
+  unchanged. This kernel update does not create a new polars-tda release.
 
 ## 0.1.0 — 2026-09-29 (GitHub pre-release)
 
