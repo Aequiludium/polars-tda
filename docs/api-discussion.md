@@ -16,7 +16,8 @@ currently be finite, non-null Float64; other dtypes require explicit casts.
 - `betti_curve` and `lifetime_summary` reuse diagrams without repeating persistence.
 - Exact borrows coordinate chunks. Sparse uses native points, packing O(n*d)
   coordinates when required instead of using the callback's quadratic distance cache.
-- Git-pinned cocycle source, without kernel modifications or copied algorithms.
+- Published cocycle 0.1.1, pinned exactly from crates.io on the development branch,
+  without kernel modifications or copied algorithms.
 
 See the [usage guide](usage.md), [feature dictionary](features.md),
 [expression contract](expression-contract.md) and [advanced API](advanced-api.md).

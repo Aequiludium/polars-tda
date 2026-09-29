@@ -284,8 +284,9 @@ dependencies = [
 
 [[package]]
 name = "cocycle"
-version = "0.1.0"
-source = "git+https://github.com/Aequiludium/cocycle-rs?rev=d404282745a4238636ccb83d521eeac952ff7a30#d404282745a4238636ccb83d521eeac952ff7a30"
+version = "0.1.1"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "d438d1fb6c4a44c50e5fcd56cd390f1c288d2bbe99eb4f0a10408db6805195ca"
 
 [[package]]
 name = "compact_str"

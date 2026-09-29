@@ -157,14 +157,22 @@ on representative workloads rather than assuming a speed or memory improvement.
 
 Native phase measurements and a tested, unapplied kernel candidate are recorded
 in [Sparse profiling](docs/sparse-profiling.md). The experiment reduced native
-time by about 20% on these fixtures; production dependencies remain unchanged.
+time by about 20% on these historical fixtures; the candidate remains unapplied.
+These measurements describe the original Git kernel, not the current registry release.
 
 ## Kernel and project boundaries
 
-`Cargo.toml` references the kernel GitHub repository with `git` and a full `rev`.
-Cargo compiles that source into the plugin: no submodule or source copy is needed.
-To upgrade, review a kernel commit, update `rev`, run `cargo update -p cocycle`,
-and rebuild/test before committing both manifest and lockfile.
+The development branch pins the published [cocycle 0.1.1 crate](https://crates.io/crates/cocycle/0.1.1)
+with `cocycle = "=0.1.1"`. Cargo downloads and compiles the registry source into
+the plugin; no Git checkout, submodule or source copy is needed. `Cargo.lock`
+records its registry checksum. Kernel API documentation is on
+[docs.rs](https://docs.rs/cocycle/0.1.1/cocycle/).
+
+To upgrade, review the kernel release and API changes, update the exact version,
+run `cargo update -p cocycle`, and rebuild/test before committing both manifest
+and lockfile. The existing polars-tda `v0.1.0` source preview still uses its
+original Git pin; this dependency migration is recorded under Unreleased in the
+[changelog](CHANGELOG.md).
 
 Python constructs expressions and validates options. Rust borrows coordinate
 buffers, invokes the kernel, and serializes/deserializes diagram columns. All

@@ -24,6 +24,18 @@ See the [installation instructions](../README.md#installation),
 The source preview uses the same pinned numerical implementation as the initial
 CI-validated commit; display metadata and release documentation do not alter it.
 
+## Development branch after v0.1.0
+
+The unreleased development branch depends on the published `cocycle = "=0.1.1"`
+crate from crates.io, with a checksum in `Cargo.lock`. The published polars-tda
+`v0.1.0` tag and release notes still describe the original kernel Git revision
+`d404282745a4238636ccb83d521eeac952ff7a30`. Kernel and plugin version numbers are
+independent; adopting cocycle 0.1.1 does not publish polars-tda 0.1.1.
+
+To evaluate this change, use the development checkout and the
+[contributor build instructions](../CONTRIBUTING.md#development-setup). The tagged
+installation above remains a reproducible historical source preview.
+
 ## Version and tag conventions
 
 - Use annotated Git tags in the form `vMAJOR.MINOR.PATCH`, pointing to a reviewed

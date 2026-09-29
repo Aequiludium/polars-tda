@@ -14,7 +14,7 @@ name = "polars_tda"
 crate-type = ["cdylib"]
 
 [dependencies]
-cocycle = { git = "https://github.com/Aequiludium/cocycle-rs", rev = "d404282745a4238636ccb83d521eeac952ff7a30" }
+cocycle = "=0.1.1"
 polars = { version = "=0.55.1", default-features = false }
 pyo3 = { version = "=0.29.0", features = ["extension-module", "abi3-py310"] }
 pyo3-polars = { version = "=0.28.0", features = ["derive"] }

@@ -3,8 +3,10 @@
 Date: 2026-09-28. Kernel: `d404282745a4238636ccb83d521eeac952ff7a30`.
 Release builds with Rust 1.95.0 on the AMD EPYC 7H12 Linux host used by the initial
 measurements. Uniform 3D coordinates, seed 42, epsilon 0.5, unchecked metric
-policy, H0/H1 over F2, no cutoff. The production kernel checkout, Git dependency
-and plugin dispatch remain unchanged. The candidate is an **unapplied** patch in
+policy, H0/H1 over F2, no cutoff. At measurement time, the production kernel
+checkout, Git dependency and plugin dispatch were unchanged. The development
+branch has since moved to crates.io cocycle 0.1.1; the timings below have not been
+remeasured for that release. The candidate is an **unapplied** historical patch in
 `benchmarks/experiments/column-entry.patch`.
 
 ## Native phases
@@ -78,7 +80,8 @@ workloads should be benchmarked before adopting the patch upstream.
 
 ## Reproduce and continue
 
-From polars-tda, build the diagnostic against the unchanged pinned dependency:
+To reproduce the historical baseline, use a checkout of polars-tda `v0.1.0`,
+which retains the measured kernel Git pin. Build its diagnostic with:
 
 ```sh
 cargo build --release --locked --example profile_sparse
@@ -92,7 +95,7 @@ across modes and binaries. It prints raw measurements and medians as JSON. It
 requires Linux for VmHWM, and does not require perf or GNU time.
 
 For a kernel candidate, compile this same Rust worker against separate baseline
-and patched disposable copies of the pinned kernel, using identical release
+and patched disposable copies of the measured kernel revision, using identical release
 flags. Apply `benchmarks/experiments/column-entry.patch` only to the candidate.
 Then pass the two worker paths:
 
@@ -105,5 +108,6 @@ uv run --no-sync python benchmarks/profile_sparse.py --points 512 --repeats 5 \
 The next experiment should focus on repeated coface generation/accumulation in
 the generic reducer, while preserving the blocker, field arithmetic, ordering,
 censoring and resource contracts. Any new cache must be measured against peak
-memory. A production dependency update requires a separately reviewed kernel
-commit; the plugin keeps its current Git pin until that exists.
+memory. The current production dependency is the published cocycle 0.1.1 crate;
+this historical patch remains unapplied. Further optimization requires a separate
+review and new measurements against the selected release.

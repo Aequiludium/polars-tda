@@ -1,7 +1,8 @@
 # Third-party notices
 
-The compiled plugin includes cocycle, from
-https://github.com/Aequiludium/cocycle-rs, under the following license.
+The compiled plugin includes [cocycle 0.1.1](https://crates.io/crates/cocycle/0.1.1),
+from [Aequiludium/cocycle-rs](https://github.com/Aequiludium/cocycle-rs), under the
+following license. The notice is preserved from the published crate.
 
 MIT License
 

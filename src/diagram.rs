@@ -152,8 +152,7 @@ pub fn encode(
         Series::new("end".into(), ends),
     ];
     let intervals =
-        StructChunked::from_series("".into(), diagram.intervals().len(), fields.iter())?
-            .into_series();
+        StructChunked::from_series("".into(), diagram.len(), fields.iter())?.into_series();
     let through = match diagram.coverage() {
         Coverage::Complete => None,
         Coverage::Through(value) => Some(value),
