@@ -1,5 +1,15 @@
 # polars-tda
 
+[![CI](https://github.com/Aequiludium/polars-tda/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/Aequiludium/polars-tda/actions/workflows/ci.yml)
+[![GitHub release](https://img.shields.io/github/v/release/Aequiludium/polars-tda?include_prereleases)](https://github.com/Aequiludium/polars-tda/releases)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![Python: 3.10+](https://img.shields.io/badge/Python-3.10%2B-blue.svg)](pyproject.toml)
+[![Status: pre-alpha](https://img.shields.io/badge/Status-pre--alpha-orange.svg)](docs/releases.md)
+
+[Documentation](docs/README.md) · [Usage guide](docs/usage.md) ·
+[Changelog](CHANGELOG.md) · [Contributing](CONTRIBUTING.md) ·
+[Issues](https://github.com/Aequiludium/polars-tda/issues)
+
 Topology features for Polars data analysis, computed natively by the
 [cocycle Rust kernel](https://github.com/Aequiludium/cocycle-rs).
 
@@ -10,6 +20,24 @@ or a model feature table. This is a pre-alpha package; no PyPI release is publis
 See the [documentation index](docs/README.md) for user guides, API contracts and
 design decisions. The [usage guide](docs/usage.md) includes numeric preparation,
 grouped features and reuse of results.
+
+## Installation
+
+The GitHub [v0.1.0 source preview](https://github.com/Aequiludium/polars-tda/releases/tag/v0.1.0)
+is a **pre-release**, not a stable API or a PyPI distribution. With Git, uv,
+Python 3.10+ and rustup installed, build the pinned source locally:
+
+```sh
+git clone --branch v0.1.0 https://github.com/Aequiludium/polars-tda.git
+cd polars-tda
+uv sync --locked --no-install-project
+uv run --no-sync maturin develop --release --locked
+```
+
+Run the examples with the resulting uv environment. Rustup selects the pinned
+Rust toolchain. This preview provides source archives, not a cross-platform wheel
+set; see [release status and compatibility](docs/releases.md). For contribution
+work, clone `main` instead and follow [development setup](CONTRIBUTING.md#development-setup).
 
 ## Quick start
 

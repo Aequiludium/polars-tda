@@ -13,6 +13,9 @@ behavior; proposed changes are explicitly marked and are not available options.
 4. [Expression contract](expression-contract.md): selectors, windows, output
    shapes and compatibility conventions.
 
+- [Releases and compatibility](releases.md): source previews, supported versions
+  and version-tag conventions.
+
 ## For advanced workflows
 
 - [Diagram APIs](advanced-api.md): compute and store diagrams, then reuse them.

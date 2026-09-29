@@ -72,7 +72,9 @@ template as a guide and remove sections that do not apply.
 Keep generated wheels, native libraries, virtual environments and benchmark data
 out of commits. Commit lockfile changes alongside intentional dependency changes.
 CI builds and tests but does not publish packages. Releases are separate maintainer
-work; a merged PR does not imply a PyPI release.
+work; a merged PR does not imply a PyPI release. See the
+[release conventions](docs/releases.md) and record user-visible changes in
+[CHANGELOG.md](CHANGELOG.md).
 
 Be respectful, focus review on the work, and make reports reproducible without
 including credentials or private datasets. Contributions are made under the
